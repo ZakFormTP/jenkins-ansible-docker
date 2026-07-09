@@ -15,11 +15,11 @@
 
 - name: install docker sdk in venv
   pip:
-    name: docker>=7.1.0
+    name: docker
     virtualenv: /opt/docker-venv
 
 - name: run container
-  community.docker.docker_container:
+  docker_container:
     name: wartest
     image: "{{ image }}"
     ports: 8081:8080
