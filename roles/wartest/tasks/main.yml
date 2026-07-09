@@ -15,7 +15,9 @@
 
 - name: install docker sdk in venv
   pip:
-    name: docker
+    name:
+      - docker
+      - requests<2.32
     virtualenv: /opt/docker-venv
 
 - name: run container
