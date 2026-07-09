@@ -13,9 +13,9 @@
   args:
     creates: /opt/docker-venv
 
-- name: install docker in venv
+- name: install docker sdk in venv
   pip:
-    name: docker
+    name: docker>=7.1.0
     virtualenv: /opt/docker-venv
 
 - name: run container
