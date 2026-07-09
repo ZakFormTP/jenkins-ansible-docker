@@ -9,6 +9,7 @@
       - docker
       - docker-compose
     executable: pip3
+    extra_args: --break-system-packages
 
 - name: run container
   docker_container:
