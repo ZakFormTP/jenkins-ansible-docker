@@ -18,9 +18,6 @@
     name: docker
     virtualenv: /opt/docker-venv
 
-- name: install collection
-  command: ansible-galaxy collection install community.docker
-
 - name: run container
   community.docker.docker_container:
     name: wartest
