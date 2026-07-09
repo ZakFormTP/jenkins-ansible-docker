@@ -16,7 +16,7 @@
 - name: install docker sdk in venv
   pip:
     name:
-      - docker
+      - docker==7.1.0
       - requests<2.32
     virtualenv: /opt/docker-venv
 
@@ -25,6 +25,8 @@
     registry_url: https://registry.gitlab.com
     username: "{{ registry_user }}"
     password: "{{ registry_password }}"
+  vars:
+    ansible_python_interpreter: /opt/docker-venv/bin/python3
 
 - name: run container
   docker_container:
@@ -32,7 +34,6 @@
     image: "{{ image }}"
     ports: 8081:8080
     state: started
-
   vars:
     ansible_python_interpreter: /opt/docker-venv/bin/python3
 #- name: install pip
