@@ -20,6 +20,12 @@
       - requests<2.32
     virtualenv: /opt/docker-venv
 
+- name: login to gitlab registry
+  docker_login:
+    registry_url: https://registry.gitlab.com
+    username: "{{ registry_user }}"
+    password: "{{ registry_password }}"
+
 - name: run container
   docker_container:
     name: wartest
