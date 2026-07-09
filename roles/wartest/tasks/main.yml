@@ -1,3 +1,29 @@
+---
+- name: installa a list of package
+  apt:
+    pkg:
+      - docker.io
+      - python3-pip
+      - python3-venv
+    state: present
+    update_cache: true
+
+- name: create venv
+  command: python3 -m venv /opt/docker-venv
+  args:
+    creates: /opt/docker-venv
+
+- name: install docker in venv
+  pip:
+    name: docker
+    virtualenv: /opt/docker-venv
+
+- name: run container
+  docker_container:
+    name: wartest
+    image: "{{ image }}"
+    ports: 8081:8080
+    state: started
 #- name: install pip
 #  apt:
 #    name: python3-pip
@@ -12,10 +38,5 @@
 #    executable: pip3
 #    extra_args: --break-system-packages
 
-- name: run container
-  docker_container:
-    name: wartest
-    image: "{{ image }}"
-    ports: 8081:8080
-    state: started
+
  
