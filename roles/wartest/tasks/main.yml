@@ -18,8 +18,11 @@
     name: docker
     virtualenv: /opt/docker-venv
 
+- name: install collection
+  command: ansible-galaxy collection install community.docker
+
 - name: run container
-  docker_container:
+  community.docker.docker_container:
     name: wartest
     image: "{{ image }}"
     ports: 8081:8080
